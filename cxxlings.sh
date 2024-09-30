@@ -11,21 +11,31 @@ terminal_width=$(tput cols)
 # 检查并安装依赖
 install_dependencies() {
     if ! command -v figlet &> /dev/null; then
-        echo "${RED}figlet 未安装，正在安装...${RESET}"
-        sudo apt-get install -y figlet
+        echo "${RED}figlet 未安装，正在尝试安装...${RESET}"
+        sudo apt-get install -y figlet || sudo snap install figlet
     fi
     if ! command -v cowsay &> /dev/null; then
-        echo "${RED}cowsay 未安装，正在安装...${RESET}"
-        sudo apt-get install -y cowsay
+        echo "${RED}cowsay 未安装，正在尝试安装...${RESET}"
+        sudo apt-get install -y cowsay || sudo snap install cowsay
     fi
     if ! command -v lolcat &> /dev/null; then
-        echo "${RED}lolcat 未安装，正在安装...${RESET}"
-        sudo apt-get install -y lolcat
+        echo "${RED}lolcat 未安装，正在尝试安装...${RESET}"
+        sudo apt-get install -y lolcat || sudo snap install lolcat
+    fi
+}
+
+# 检查并安装xmake
+install_xmake() {
+    if ! command -v xmake &> /dev/null; then
+        echo "${RED}xmake 未安装，正在安装...${RESET}"
+        curl -fsSL https://xmake.io/shget.text | bash
+        sudo mv xmake /usr/local/bin/
     fi
 }
 
 # 检查并编译 xmake 目标
 check_and_build() {
+    install_xmake
     if ! xmake; then
         echo "${RED}构建失败，请检查项目配置！${RESET}"
         exit 1
