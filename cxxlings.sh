@@ -28,7 +28,7 @@ install_dependencies() {
 install_xmake() {
     if ! command -v xmake &> /dev/null; then
         echo "${RED}xmake 未安装，正在安装...${RESET}"
-        curl -fsSL https://xmake.io/shget.text | bash
+        sudo wget https://xmake.io/shget.text -O - | bash
         sudo mv xmake /usr/local/bin/
     fi
 }
