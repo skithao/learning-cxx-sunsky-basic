@@ -29,7 +29,7 @@ install_xmake() {
     if ! command -v xmake &> /dev/null; then
         echo "${RED}xmake 未安装，正在安装...${RESET}"
         sudo wget https://xmake.io/shget.text -O - | bash
-        sudo mv xmake /usr/local/bin/
+        # sudo mv xmake /usr/local/bin/
     fi
 }
 
