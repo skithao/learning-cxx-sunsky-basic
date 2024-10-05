@@ -87,7 +87,7 @@ if [ "$completed" -eq "$total_exercises" ]; then
     echo "${GREEN}所有测试完成！好耶~~~${RESET}"
 else
     cowthink "革命尚未完成，加油哇QAQ" | lolcat
-    echo "${RED}测试失败！请检查第 $((completed + 1)) 题！${RESET}"
+    echo "${RED}测试失败！请检查第 $((completed)) 题！${RESET}"
 fi
 
 exit 0 # 退出脚本，返回状态码0表示成功
